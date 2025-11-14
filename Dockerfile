@@ -1,10 +1,8 @@
-version: "3.8"
+FROM qdrant/qdrant:latest
 
-services:
-  qdrant:
-    image: qdrant/qdrant
-    container_name: qdrant
-    ports:
-      - "6333:6333"
-    volumes:
-      - ./qdrant_storage:/qdrant/storage
+# tạo thư mục lưu data trong container (ephemeral)
+RUN mkdir -p /qdrant/storage
+
+VOLUME ["/qdrant/storage"]
+
+EXPOSE 6333
